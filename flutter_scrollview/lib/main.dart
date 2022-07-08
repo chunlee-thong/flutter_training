@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
 }
 
 extension BuildContexExtension on BuildContext {
-  push(Widget page) {
+  void push(Widget page) {
     Navigator.of(this).push(MaterialPageRoute(builder: (context) {
       return page;
     }));

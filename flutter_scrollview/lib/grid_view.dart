@@ -26,10 +26,52 @@ class _GridViewPageState extends State<GridViewPage> {
           ),
           itemCount: 9,
           itemBuilder: (context, index) {
-            return Container(
-              color: Colors.red,
+            final String image = "https://picsum.photos/${200 + index}";
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondary) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: AnotherHeroWidget(
+                          image: image,
+                          tag: "photo-$index",
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+              child: Hero(
+                tag: "photo-$index",
+                child: Image.network(
+                  image,
+                ),
+              ),
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+class AnotherHeroWidget extends StatelessWidget {
+  final String image;
+  final String tag;
+  const AnotherHeroWidget({Key? key, required this.image, required this.tag}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Hero(
+        tag: tag,
+        child: Image.network(
+          image,
+          width: 500,
+          fit: BoxFit.cover,
         ),
       ),
     );
