@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chunleethong.wow_panda">
    <application
-        android:label="wow_panda"
+        android:label="Wow Panda"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
