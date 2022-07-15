@@ -12,10 +12,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Wow Panda',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
+      // locale: const Locale("km", "KH"),
+      // supportedLocales: const [
+      //   Locale("km", "KH"),
+      //   Locale("en", "US"),
+      // ],
       home: const SignInPage(),
     );
   }
