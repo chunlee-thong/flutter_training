@@ -12,6 +12,7 @@ class _SignUpPageState extends State<SignUpPage> {
   ///
   TextEditingController emailTC = TextEditingController(text: "");
   TextEditingController passwordTC = TextEditingController(text: "");
+  TextEditingController dobTC = TextEditingController(text: "");
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -61,10 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     decoration: InputDecoration(
                       hintText: "Email",
                       prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
+                      border: kInputBorder,
                       filled: true,
                       fillColor: Colors.green[50],
                     ),
@@ -91,6 +89,29 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                       ),
                       hintText: "Password",
+                      border: kInputBorder,
+                      filled: true,
+                      fillColor: Colors.green[50],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: dobTC,
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime.now(),
+                      );
+                      if (selectedDate != null) {
+                        dobTC.text = selectedDate.toIso8601String();
+                      }
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Date of birth",
+                      prefixIcon: const Icon(Icons.calendar_month),
                       border: kInputBorder,
                       filled: true,
                       fillColor: Colors.green[50],
