@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'src/pages/sign_in/sign_in_page.dart';
+import 'package:wow_panda/src/pages/sign_in/sign_in_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,11 +16,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      // locale: const Locale("km", "KH"),
-      // supportedLocales: const [
-      //   Locale("km", "KH"),
-      //   Locale("en", "US"),
-      // ],
       home: const SignInPage(),
     );
   }
