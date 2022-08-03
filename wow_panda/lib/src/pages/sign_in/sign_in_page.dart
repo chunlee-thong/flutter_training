@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wow_panda/src/pages/sign_up/sign_up_page.dart';
 
@@ -114,8 +115,21 @@ class _SignInPageState extends State<SignInPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () async {
-                          bool isValidate = formKey.currentState!.validate();
-                          if (isValidate) {}
+                          try {
+                            bool isValidate = formKey.currentState!.validate();
+                            if (isValidate) {
+                              var credential = await FirebaseAuth.instance.signInAnonymously();
+                            }
+                          } on FirebaseAuthException catch (e) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(e.toString()),
+                                );
+                              },
+                            );
+                          }
                         },
                         child: const Text("Sign In"),
                       ),

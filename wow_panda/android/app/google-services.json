@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "236171991383",
+    "project_id": "wow-panda-c6c36",
+    "storage_bucket": "wow-panda-c6c36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236171991383:android:6d19398ef916e768054612",
+        "android_client_info": {
+          "package_name": "com.chunleethong.wowpanda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236171991383-99nteefktfab335igagp3c3rc301cdm0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe3hTIemejJZwPsEZHQA8-UdMNXiPe5h4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236171991383-99nteefktfab335igagp3c3rc301cdm0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "236171991383-rv24l2avl5cjm1nuk28mp9spgqupr70o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.chunleethong.wowpanda"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
