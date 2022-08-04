@@ -17,7 +17,6 @@ class _RootPageState extends State<RootPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -35,8 +34,8 @@ class _RootPageState extends State<RootPage> {
           ),
         ],
       ),
-      body: FutureBuilder<List<FoodModel>>(
-        future: foodController.fetchAllFoods(),
+      body: StreamBuilder<List<FoodModel>>(
+        stream: foodController.fetchAllFoodStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
