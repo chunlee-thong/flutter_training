@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:wow_panda/src/pages/root/root_page.dart';
 import 'package:wow_panda/src/pages/sign_in/sign_in_page.dart';
 
 void main() async {
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const SignInPage(),
+      home: FirebaseAuth.instance.currentUser != null ? const RootPage() : const SignInPage(),
     );
   }
 }

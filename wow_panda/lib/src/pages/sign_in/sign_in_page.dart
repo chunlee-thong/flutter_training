@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:wow_panda/src/pages/root/root_page.dart';
 import 'package:wow_panda/src/pages/sign_up/sign_up_page.dart';
+import 'package:wow_panda/src/utitilies/navigator.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -57,6 +59,7 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(height: 24),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
+                      autocorrect: false,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "email is invalid";
@@ -118,7 +121,12 @@ class _SignInPageState extends State<SignInPage> {
                           try {
                             bool isValidate = formKey.currentState!.validate();
                             if (isValidate) {
-                              var credential = await FirebaseAuth.instance.signInAnonymously();
+                              ////
+                              await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                email: emailTC.text.trim(),
+                                password: passwordTC.text.trim(),
+                              );
+                              pushAndRemoveAll(context, const RootPage());
                             }
                           } on FirebaseAuthException catch (e) {
                             showDialog(

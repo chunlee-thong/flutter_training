@@ -147,6 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       onPressed: () async {
                         bool isValidate = formKey.currentState!.validate();
                         if (isValidate) {
+                          ///
                           await FirebaseAuth.instance.createUserWithEmailAndPassword(
                             email: emailTC.text.trim(),
                             password: passwordTC.text.trim(),
