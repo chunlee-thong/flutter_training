@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:wow_panda/src/controllers/food_controller.dart';
-import 'package:wow_panda/src/model/food_model.dart';
-import 'package:wow_panda/src/pages/sign_in/sign_in_page.dart';
-import 'package:wow_panda/src/utitilies/navigator.dart';
+import 'package:provider/provider.dart';
+import 'package:wow_panda/src/pages/home/home_page.dart';
+import 'package:wow_panda/src/widgets/bottom_navigation_widget.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);
@@ -13,44 +11,28 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  FoodController foodController = FoodController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  static final List<Widget> _pages = [
+    const HomePage(),
+    Container(color: Colors.red),
+    Container(color: Colors.green),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              pushAndRemoveAll(context, const SignInPage());
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-      ),
-      body: StreamBuilder<List<FoodModel>>(
-        stream: foodController.fetchAllFoodStream(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (BuildContext context, int index) {
-                final food = snapshot.data![index];
-                return ListTile(
-                  title: Text(food.name),
-                  subtitle: Text("${food.price}"),
-                );
-              },
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
+    final bottomNavigationController = Provider.of<BottomNavigationController>(
+      context,
+      listen: false,
+    );
+
+    return Provider(
+      create: (context) => 10,
+      child: Scaffold(
+        body: PageView(
+          controller: bottomNavigationController.pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: _pages,
+        ),
+        bottomNavigationBar: const BottomNavigationBarWidget(),
       ),
     );
   }

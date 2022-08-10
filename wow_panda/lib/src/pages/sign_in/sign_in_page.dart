@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:wow_panda/src/pages/root/root_page.dart';
 import 'package:wow_panda/src/pages/sign_up/sign_up_page.dart';
-import 'package:wow_panda/src/utitilies/navigator.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -118,26 +116,26 @@ class _SignInPageState extends State<SignInPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () async {
-                          try {
-                            bool isValidate = formKey.currentState!.validate();
-                            if (isValidate) {
-                              ////
-                              await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: emailTC.text.trim(),
-                                password: passwordTC.text.trim(),
-                              );
-                              pushAndRemoveAll(context, const RootPage());
-                            }
-                          } on FirebaseAuthException catch (e) {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text(e.toString()),
-                                );
-                              },
-                            );
-                          }
+                          // try {
+                          //   bool isValidate = formKey.currentState!.validate();
+                          //   if (isValidate) {
+                          //     ////
+                          //     // await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          //     //   email: emailTC.text.trim(),
+                          //     //   password: passwordTC.text.trim(),
+                          //     // );
+                          //     pushAndRemoveAll(context, const RootPage());
+                          //   }
+                          // } on FirebaseAuthException catch (e) {
+                          //   showDialog(
+                          //     context: context,
+                          //     builder: (context) {
+                          //       return AlertDialog(
+                          //         content: Text(e.toString()),
+                          //       );
+                          //     },
+                          //   );
+                          // }
                         },
                         child: const Text("Sign In"),
                       ),

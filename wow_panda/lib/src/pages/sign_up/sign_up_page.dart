@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wow_panda/src/constant/app_style.dart';
 
@@ -148,10 +147,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         bool isValidate = formKey.currentState!.validate();
                         if (isValidate) {
                           ///
-                          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                            email: emailTC.text.trim(),
-                            password: passwordTC.text.trim(),
-                          );
+                          // await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          //   email: emailTC.text.trim(),
+                          //   password: passwordTC.text.trim(),
+                          // );
                         }
                       },
                       child: const Text("Sign Up"),
