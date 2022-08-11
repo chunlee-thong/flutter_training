@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/subjects.dart';
 import 'package:wow_panda/src/controllers/food_controller.dart';
 import 'package:wow_panda/src/model/food_model.dart';
 import 'package:wow_panda/src/widgets/custom_error_widget.dart';
@@ -16,10 +18,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   FoodController foodController = FoodController();
-  late Future<List<FoodModel>> foodFt;
+  late BehaviorSubject<List<FoodModel>?> foodFt = BehaviorSubject();
+
+  void fetchFoods([bool reloading = false]) async {
+    try {
+      if (reloading) {
+        foodFt.add(null);
+      }
+      var result = await foodController.fetchAllFoods();
+      foodFt.add(result);
+    } catch (ex) {
+      foodFt.addError(ex);
+    }
+  }
+
   @override
   void initState() {
-    foodFt = foodController.fetchAllFoods();
+    fetchFoods();
     super.initState();
   }
 
@@ -29,25 +44,31 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
     return Column(
       children: [
         AppBar(
-          backgroundColor: Colors.white,
           elevation: 1.0,
           title: Row(
-            children: const [
-              Icon(Icons.food_bank_outlined, size: 28),
-              SizedBox(width: 4),
-              Text("Wow Panda"),
+            children: [
+              const Icon(
+                Icons.food_bank_outlined,
+                size: 28,
+              ),
+              const SizedBox(width: 4),
+              const Text("title").tr(
+                args: ["chunlee", "how are you"],
+              ),
             ],
           ),
-          foregroundColor: Theme.of(context).primaryColor,
           centerTitle: false,
-          actions: const [
-            CartIcon(),
-            // IconButton(onPressed: generateFood, icon: Icon(Icons.add)),
+          actions: [
+            const CartIcon(),
+            IconButton(
+              onPressed: () => fetchFoods(false),
+              icon: const Icon(Icons.refresh),
+            ),
           ],
         ),
         Expanded(
-          child: FutureBuilder<List<FoodModel>>(
-            future: foodFt,
+          child: StreamBuilder<List<FoodModel>?>(
+            stream: foodFt,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return _buildFoodGrid(snapshot.data!);

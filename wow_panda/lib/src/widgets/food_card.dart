@@ -46,7 +46,10 @@ class FoodCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("\$ ${food.price}"),
+              Text(
+                "\$ ${food.price.toDouble()}",
+                style: kSubtitleStyle.green,
+              ),
               InkWell(
                 onTap: () {
                   context.read<CartController>().addItemToCart(food);
