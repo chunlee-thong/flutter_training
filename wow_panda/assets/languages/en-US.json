@@ -1,5 +1,9 @@
 {
   "home": "Home",
   "order": "Order",
-  "profile": "Profile"
+  "profile": "Profile",
+  "email": "Email",
+  "password": "password",
+  "sign-in": "Sign In",
+  "remember-me": "Remember me"
 }

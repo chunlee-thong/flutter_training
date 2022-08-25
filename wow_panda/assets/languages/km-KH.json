@@ -1,5 +1,9 @@
 {
   "home": "ទំព័រដើម",
   "order": "ការកម្ម៉ង់",
-  "profile": "គណនី"
+  "profile": "គណនី",
+  "email": "Email",
+  "password": "password",
+  "sign-in": "Sign In",
+  "remember-me": "Remember me"
 }

@@ -1,15 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rxdart/subjects.dart';
 
 import '../model/food_model.dart';
+import '../services/food_service.dart';
 
 class FoodController {
+  late BehaviorSubject<List<FoodModel>?> foodStream = BehaviorSubject();
+
   ///
-  Future<List<FoodModel>> fetchAllFoods() async {
-    var snapshot = await FirebaseFirestore.instance.collection("foods").get();
-    return snapshot.docs
-        .map(
-          (e) => FoodModel.fromJson(e.data(), e.id),
-        )
-        .toList();
+  Future<void> fetchFoods([bool reloading = true]) async {
+    try {
+      if (reloading) {
+        foodStream.add(null);
+      }
+      var result = await foodService.fetchAllFoods();
+      foodStream.add(result);
+    } catch (ex) {
+      foodStream.addError(ex);
+    }
   }
 }
