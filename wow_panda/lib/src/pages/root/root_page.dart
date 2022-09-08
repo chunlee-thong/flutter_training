@@ -4,6 +4,7 @@ import 'package:wow_panda/src/pages/home/home_page.dart';
 import 'package:wow_panda/src/widgets/bottom_navigation_widget.dart';
 
 import '../order/order_page.dart';
+import '../profile/profile_page.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);
@@ -15,8 +16,8 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   static final List<Widget> _pages = [
     const HomePage(),
-    IntervalAnimation(),
-    Container(color: Colors.green),
+    const OrderPage(),
+    const ProfilePage(),
   ];
 
   @override
